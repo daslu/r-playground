@@ -2,7 +2,7 @@ library(shiny)
 
 ui <- fluidPage(
   tags$head(tags$script(src = "message-handler.js")),
-  titlePanel("....")
+  titlePanel("~~~~"),
   actionButton("Pull", "Pull apps from github"))
 
 server = function(input, output, session) {
