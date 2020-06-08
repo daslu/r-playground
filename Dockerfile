@@ -24,7 +24,12 @@ EXPOSE 3838
 
 COPY shiny-server.sh /usr/bin/shiny-server.sh
 
-RUN runuser -l shiny -c 'git clone https://b1a77bbcba301bb8723fe0c7d2653ed94f5ccc64@github.com/daslu/r-playground.git /home/shiny/apps'
+ARG github_token
+
+RUN echo $github_token >> /tmp/github_token
+RUN chmod a+r /tmp/github_token
+
+RUN runuser -l shiny -c 'git clone https://$(cat /tmp/github_token)@github.com/daslu/r-playground.git /home/shiny/apps'
 
 RUN rm -rf /srv/shiny-server/*
 RUN cp -r /home/shiny/apps/* /srv/shiny-server/ && \
