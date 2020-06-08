@@ -7,7 +7,7 @@ ui <- fluidPage(
 
 server = function(input, output, session) {
   observeEvent(input$do, {
-    system(touch "/tmp/a")
+    system("touch /tmp/a")
     #system("(cd /home/shiny/apps; git pull)")
   })
 }
